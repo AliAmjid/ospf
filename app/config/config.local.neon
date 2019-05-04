@@ -1,0 +1,7 @@
+parameters:
+	dibi:
+		driver: "mysqli"
+		host: "localhost"
+		username: "aliamjid"
+		password: "Televize12"
+		database: "ospf"

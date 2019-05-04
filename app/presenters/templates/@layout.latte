@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>MyOSPF v{$version}</title>
+	<script src="/js/libs-{$version}.js"></script>
+	<link rel="stylesheet" href="/css/libs-{$version}.css">
+	<link rel="stylesheet" href="/css/release-{$version}.css">
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<style>
+		.souhrn, #eq, .eq, .dulezite {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	{include content}
+	<br>
+	<br>
+	<br>
+	<i class="signature" style="position: absolute; top: 96%; margin-left: 90%">Made by <b>Ali Amjid</b></i>
+	<br>
+	<br>
+	<script src="/js/release-{$version}.js"></script>
+	<div class="under-me"></div>
+	{block js}
+	{/block}
+	{foreach $flashes as $flash}
+		<script>
+			swal({
+				position: 'top-end',
+				type: {$flash->type},
+				title: {$flash->message},
+				showConfirmButton: false,
+				timer: 1500
+			})
+		</script>
+	{/foreach}
+
+	<script n:syntax="off">
+		$(document).ready(function () {
+			$('.under-me').next().hide();
+		});
+	</script>
+</body>
+</html>

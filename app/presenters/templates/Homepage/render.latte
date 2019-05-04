@@ -1,0 +1,61 @@
+{block content}
+	<h1>Tabulka pro síť: {$netwrok->name}</h1>
+	<table class="datatable">
+		<thead>
+		<tr>
+			<th>Síť</th>
+			<th>Nejkratší metrika</th>
+			<th>Cesta</th>
+			<th>Předchozí síť</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr n:foreach="$data as $item">
+			<th>{$item->name}</th>
+			<th>{$item->metric}</th>
+			<th>{$item->path|noescape}</th>
+			<th>{$item->last_network}</th>
+		</tr>
+		</tbody>
+	</table>
+	<style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		thead tr th {
+			background-color: #00b800;
+			color: white;
+		}
+
+		td, th {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #dddddd;
+		}
+
+		.signature {
+			position: relative !important;
+		}
+	</style>
+{/block}
+
+{block js}
+	<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script n:syntax="off">
+		$(document).ready(function () {
+			$('.datatable').DataTable({
+				paging: false,
+				"columnDefs": [
+					{"targets": [1, 2, 3], "searchable": false}
+				]
+			});
+		});
+	</script>
+{/block}
