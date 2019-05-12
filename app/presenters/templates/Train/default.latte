@@ -1,0 +1,62 @@
+{block css}
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		body {
+			font-family: 'Poppins', sans-serif;
+			background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+		}
+
+		h1{
+			color: white;;
+			font-weight: 400;
+			margin-top:  60px;
+			text-transform: uppercase;
+		}
+		h2 {
+			color: white;
+			position: relative;
+			margin-bottom: 40px;
+			font-size: 1.5rem;
+		}
+
+		table thead tr th{
+			color: #ffffff;
+			font-weight: 300;
+			font-size: 1.7rem;
+		}
+
+	</style>
+{/block}
+{block content}
+<div class="container">
+	<h1>Train Simulation game Leader board</h1>
+	<h2>Download & play <a href="/game.zip" target="_blank">Here (Logisim project)</a></h2>
+	<table class="datatable">
+		<thead>
+		<tr>
+			<th>Země</th>
+			<th>Uživatel</th>
+			<th>Skóre</th>
+			<th>Datum</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr n:foreach="$data as $item">
+			<th><img src="{$item->countery_flag}" alt="coutnry flag"></th>
+			<th>{$item->user}</th>
+			<th>{$item->score}</th>
+			<th>{$item->date->format('m.d.Y (H:i)')}</th>
+		</tr>
+		</tbody>
+	</table>
+</div>
+{/block}
+{block js}
+	<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script n:syntax="off">
+		$(document).ready(function () {
+			$('.datatable').DataTable();
+		});
+	</script>
+{/block}

@@ -4,6 +4,7 @@
 namespace App\Presenters;
 
 
+use App\Entity\Train;
 use Dibi\Connection;
 use Nette\DI\Container;
 
@@ -95,5 +96,13 @@ WHERE network_a = %i OR network_b = %i ',$id,$id)->fetchAll();
 
 	public function getNextNetworkByRules(array $visited) {
 		return $this->connection->query('SELECT * FROM networks WHERE ch_short is NOT NULL AND id NOT IN %in ORDER BY ch_short LIMIT 1',$visited)->fetch();
+	}
+
+	public function writeScore(Train $scoreEntity) {
+		$this->connection->query('INSERT INTO train',(array)$scoreEntity);
+	}
+
+	public function getTrainScore() {
+		return $this->connection->query('SELECT * FROM train ORDER by score DESC')->fetchAll();
 	}
 }
